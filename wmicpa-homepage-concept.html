@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>West Michigan CPA's — Clarity for what's next</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2C52;
+    --blue:#1F5FA8;
+    --blue-light:#4A85C9;
+    --steel:#8B96A1;
+    --mist:#F3F5F8;
+    --paper:#FBFAF7;
+    --amber:#C68A2E;
+    --ink:#101820;
+    --line:#DDE2E8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--navy);
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+
+  /* ---------- focus ---------- */
+  a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,250,247,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 0;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-mark{width:40px;height:40px;}
+  .brand-text{font-family:'Fraunces',serif;font-weight:600;font-size:18px;line-height:1.15;color:var(--navy);}
+  .brand-text span{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:11px;letter-spacing:0.12em;color:var(--steel);text-transform:uppercase;}
+  nav.links{display:flex;align-items:center;gap:36px;}
+  nav.links a{font-size:14.5px;font-weight:500;color:var(--ink);position:relative;padding:4px 0;}
+  nav.links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--amber);transition:width .25s ease;}
+  nav.links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--navy);color:#fff;padding:11px 22px;border-radius:3px;
+    font-size:14px;font-weight:600;letter-spacing:0.01em;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--blue);}
+  .nav-toggle{display:none;}
+  @media(max-width:900px){
+    nav.links{display:none;}
+    .nav-toggle{display:block;background:none;border:none;font-family:'Inter';font-weight:600;font-size:13px;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:96px 0 60px;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:48px;align-items:center;}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:12px;color:var(--blue);font-weight:600;margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--amber);}
+  h1.hero-head{
+    font-size:clamp(40px,5.4vw,64px);
+    line-height:1.04;
+    margin-bottom:24px;
+  }
+  h1.hero-head em{font-style:italic;color:var(--blue);}
+  .hero-sub{
+    font-size:18px;line-height:1.65;color:#3B4754;max-width:480px;margin-bottom:36px;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;}
+  .btn-primary{
+    background:var(--navy);color:#fff;padding:15px 28px;border-radius:3px;
+    font-weight:600;font-size:14.5px;display:inline-flex;align-items:center;gap:10px;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .btn-primary:hover{background:var(--blue);transform:translateY(-1px);}
+  .btn-secondary{
+    border:1px solid var(--line);padding:15px 28px;border-radius:3px;
+    font-weight:600;font-size:14.5px;color:var(--navy);
+    transition:border-color .2s ease,background .2s ease;
+  }
+  .btn-secondary:hover{border-color:var(--navy);background:#fff;}
+  .hero-meta{display:flex;gap:32px;flex-wrap:wrap;}
+  .hero-meta div{border-left:2px solid var(--amber);padding-left:14px;}
+  .hero-meta .num{font-family:'Fraunces',serif;font-size:26px;color:var(--navy);font-weight:600;display:block;}
+  .hero-meta .lbl{font-size:12.5px;color:var(--steel);}
+
+  .hero-art{position:relative;}
+  .chart-card{
+    background:#fff;border:1px solid var(--line);border-radius:6px;
+    padding:28px 26px 20px;box-shadow:0 30px 60px -30px rgba(11,44,82,0.25);
+  }
+  .chart-card .cc-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+  .chart-card .cc-top .t1{font-size:12.5px;color:var(--steel);font-weight:500;}
+  .chart-card .cc-top .t2{font-family:'Fraunces',serif;font-size:30px;color:var(--navy);}
+  .chart-card svg{width:100%;height:auto;display:block;}
+  .draw-path{
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 2.2s 0.3s cubic-bezier(.65,0,.35,1) forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .pulse-dot{animation:pulse 2.4s ease-in-out infinite;transform-origin:center;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+  .chart-foot{display:flex;justify-content:space-between;margin-top:10px;}
+  .chart-foot span{font-size:11px;color:var(--steel);font-family:'IBM Plex Mono',monospace;}
+
+  @media (prefers-reduced-motion: reduce){
+    .draw-path{animation:none;stroke-dashoffset:0;}
+    .pulse-dot{animation:none;}
+  }
+
+  /* ---------- marquee strip ---------- */
+  .strip{
+    background:var(--navy);color:#fff;padding:14px 0;overflow:hidden;
+    border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .strip-track{display:flex;gap:60px;white-space:nowrap;animation:scroll 28s linear infinite;width:max-content;}
+  .strip-track span{font-size:13px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.85;font-weight:500;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion: reduce){.strip-track{animation:none;}}
+
+  /* ---------- section shared ---------- */
+  section{padding:110px 0;}
+  @media(max-width:640px){section{padding:72px 0;}}
+  .section-head{max-width:620px;margin-bottom:64px;}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px);line-height:1.12;}
+  .section-head p{color:#4B5663;font-size:16.5px;margin-top:16px;line-height:1.6;}
+  .tag{
+    font-size:12px;color:var(--blue);font-weight:600;margin-bottom:14px;display:block;
+  }
+
+  /* ---------- services ---------- */
+  .services{background:var(--mist);}
+  .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:900px){.service-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.service-grid{grid-template-columns:1fr;}}
+  .service-card{background:#fff;padding:38px 30px;transition:background .25s ease;position:relative;}
+  .service-card:hover{background:var(--navy);}
+  .service-card:hover h3,.service-card:hover p,.service-card:hover .sc-num{color:#fff;}
+  .service-card:hover .sc-icon svg{stroke:#fff;}
+  .sc-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--steel);display:block;margin-bottom:28px;transition:color .25s ease;}
+  .sc-icon{margin-bottom:20px;}
+  .sc-icon svg{width:30px;height:30px;stroke:var(--blue);transition:stroke .25s ease;}
+  .service-card h3{font-size:19px;margin-bottom:10px;transition:color .25s ease;}
+  .service-card p{font-size:14.5px;line-height:1.6;color:#5A6573;transition:color .25s ease;}
+
+  /* ---------- process (real sequence, numbering justified) ---------- */
+  .process{}
+  .process-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:60px;}
+  @media(max-width:900px){.process-grid{grid-template-columns:1fr;}}
+  .process-line{position:relative;padding-left:46px;border-left:1px solid var(--line);}
+  .p-step{position:relative;padding-bottom:48px;}
+  .p-step:last-child{padding-bottom:0;}
+  .p-step::before{
+    content:attr(data-n);
+    position:absolute;left:-58px;top:0;
+    width:32px;height:32px;border-radius:50%;
+    background:#fff;border:1px solid var(--navy);color:var(--navy);
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .p-step h3{font-size:18px;margin-bottom:8px;}
+  .p-step p{font-size:14.5px;color:#5A6573;line-height:1.6;max-width:420px;}
+
+  /* ---------- stats band ---------- */
+  .stats-band{background:var(--navy);color:#fff;}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
+  @media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+  .stat .num{font-family:'Fraunces',serif;font-size:clamp(34px,4vw,48px);color:#fff;}
+  .stat .lbl{font-size:13px;color:rgba(255,255,255,0.65);margin-top:6px;letter-spacing:0.02em;}
+
+  /* ---------- testimonial ---------- */
+  .testi{background:var(--mist);}
+  .testi-wrap{max-width:760px;margin:0 auto;text-align:center;}
+  .testi blockquote{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(22px,2.6vw,30px);line-height:1.45;color:var(--navy);
+  }
+  .testi cite{display:block;margin-top:28px;font-style:normal;font-size:14px;color:#4B5663;}
+  .testi cite b{color:var(--navy);}
+
+  /* ---------- about strip ---------- */
+  .about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:center;}
+  @media(max-width:900px){.about-grid{grid-template-columns:1fr;}}
+  .about-figure{
+    background:#fff;border:1px solid var(--line);border-radius:6px;padding:36px;
+  }
+  .about-figure .af-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .about-figure .af-row:last-child{border-bottom:none;}
+  .about-figure .af-row span:first-child{color:#5A6573;}
+  .about-figure .af-row span:last-child{font-weight:600;color:var(--navy);}
+
+  /* ---------- CTA ---------- */
+  .cta{background:var(--navy);color:#fff;position:relative;overflow:hidden;}
+  .cta-grid{display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;}
+  .cta h2{color:#fff;font-size:clamp(28px,3.6vw,42px);max-width:520px;}
+  .cta-actions{display:flex;gap:16px;}
+  .cta .btn-primary{background:var(--amber);}
+  .cta .btn-primary:hover{background:#B47B25;}
+  .cta .btn-secondary{border-color:rgba(255,255,255,0.3);color:#fff;}
+  .cta .btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,0.06);}
+
+  /* ---------- footer ---------- */
+  footer{padding:64px 0 36px;border-top:1px solid var(--line);}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  .foot-grid h4{font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--steel);margin-bottom:18px;font-weight:600;}
+  .foot-grid ul{list-style:none;}
+  .foot-grid li{margin-bottom:11px;font-size:14px;}
+  .foot-grid a:hover{color:var(--blue);}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:28px;border-top:1px solid var(--line);font-size:12.5px;color:var(--steel);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 100 100" fill="none">
+        <path d="M8 78 C 20 78, 26 50, 38 50 C 48 50, 50 64, 60 64 C 72 64, 76 30, 92 16" stroke="#8B96A1" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <path d="M8 70 C 20 70, 26 42, 38 42 C 48 42, 50 56, 60 56 C 72 56, 76 22, 92 8" stroke="#0B2C52" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <path d="M76 8 L92 8 L92 24" stroke="#0B2C52" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="brand-text">West Michigan<span>CPA's</span></span>
+    </a>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Book a consult</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow mono">Ada &amp; Grandville, Michigan</span>
+        <h1 class="hero-head">Numbers you can <em>build decisions</em> on.</h1>
+        <p class="hero-sub">West Michigan CPA's pairs hands-on tax and accounting expertise with the kind of clarity that lets business owners actually run their business — not just react to it.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#contact">Schedule a consultation →</a>
+          <a class="btn-secondary" href="#services">Explore services</a>
+        </div>
+        <div class="hero-meta">
+          <div><span class="num">25+</span><span class="lbl">Years serving West Michigan</span></div>
+          <div><span class="num">400+</span><span class="lbl">Businesses &amp; individuals advised</span></div>
+          <div><span class="num">48hr</span><span class="lbl">Typical response time</span></div>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="chart-card">
+          <div class="cc-top">
+            <span class="t1">Client net margin — trailing 12mo</span>
+            <span class="t2">+18.4%</span>
+          </div>
+          <svg viewBox="0 0 420 180" fill="none">
+            <line x1="0" y1="40" x2="420" y2="40" stroke="#EDEFF2" stroke-width="1"/>
+            <line x1="0" y1="90" x2="420" y2="90" stroke="#EDEFF2" stroke-width="1"/>
+            <line x1="0" y1="140" x2="420" y2="140" stroke="#EDEFF2" stroke-width="1"/>
+            <path class="draw-path" d="M0 130 C 50 132, 70 95, 110 92 C 150 89, 160 115, 195 118 C 230 121, 250 60, 290 50 C 330 40, 350 55, 420 12"
+                  stroke="#1F5FA8" stroke-width="3.5" stroke-linecap="round"/>
+            <circle class="pulse-dot" cx="420" cy="12" r="6" fill="#C68A2E"/>
+          </svg>
+          <div class="chart-foot">
+            <span>JAN</span><span>MAR</span><span>MAY</span><span>JUL</span><span>SEP</span><span>NOV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="strip-track">
+      <span>Small Business Accounting</span><span>·</span>
+      <span>Tax Planning &amp; Preparation</span><span>·</span>
+      <span>QuickBooks Advisory</span><span>·</span>
+      <span>Audits, Reviews &amp; Compilations</span><span>·</span>
+      <span>Part-Time CFO Services</span><span>·</span>
+      <span>IRS Representation</span><span>·</span>
+      <span>Small Business Accounting</span><span>·</span>
+      <span>Tax Planning &amp; Preparation</span><span>·</span>
+      <span>QuickBooks Advisory</span><span>·</span>
+      <span>Audits, Reviews &amp; Compilations</span><span>·</span>
+      <span>Part-Time CFO Services</span><span>·</span>
+      <span>IRS Representation</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag mono">What we do</span>
+        <h2>Four practices, one point of contact.</h2>
+        <p>From the first invoice to your exit strategy, we cover the full lifecycle of a growing business — so you're never shuffled between specialists.</p>
+      </div>
+
+      <div class="service-grid">
+        <div class="service-card">
+          <span class="sc-num">01</span>
+          <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 4v5"/></svg></div>
+          <h3>Business Accounting</h3>
+          <p>Bookkeeping, financial statements, and cash flow systems that tell you where you stand — before it's a problem.</p>
+        </div>
+        <div class="service-card">
+          <span class="sc-num">02</span>
+          <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M8 15l4-5 3 3 4-6"/></svg></div>
+          <h3>Tax Planning &amp; Prep</h3>
+          <p>Year-round strategy, not just April paperwork. We plan for the tax bill before it arrives, not after.</p>
+        </div>
+        <div class="service-card">
+          <span class="sc-num">03</span>
+          <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c1-4 4-6 7-6s6 2 7 6"/></svg></div>
+          <h3>New &amp; Growing Business</h3>
+          <p>Entity formation, part-time CFO support, and the bank-ready financials that get a loan approved.</p>
+        </div>
+        <div class="service-card">
+          <span class="sc-num">04</span>
+          <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 00-2 2v4M15 3h4a2 2 0 012 2v4M9 21H5a2 2 0 01-2-2v-4M15 21h4a2 2 0 002-2v-4"/></svg></div>
+          <h3>Audit &amp; Assurance</h3>
+          <p>Audits, reviews, and compilations delivered on schedule, with findings explained in plain English.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="wrap process-grid">
+      <div class="section-head" style="margin-bottom:0;">
+        <span class="tag mono">How we work</span>
+        <h2>An engagement that follows your fiscal year.</h2>
+        <p>This is the actual sequence every client moves through with us, in order — not a one-off project.</p>
+      </div>
+      <div class="process-line">
+        <div class="p-step" data-n="1">
+          <h3>Discovery &amp; books review</h3>
+          <p>We audit your current books, systems, and entity structure to find what's costing you time or money today.</p>
+        </div>
+        <div class="p-step" data-n="2">
+          <h3>Plan the fiscal year</h3>
+          <p>A written tax and cash flow plan tied to your actual goals — hiring, equipment, expansion, or exit.</p>
+        </div>
+        <div class="p-step" data-n="3">
+          <h3>Run it monthly</h3>
+          <p>Ongoing bookkeeping, payroll, and check-ins so decisions get made with current numbers, not last quarter's.</p>
+        </div>
+        <div class="p-step" data-n="4">
+          <h3>Close &amp; file</h3>
+          <p>Year-end close, tax filing, and a debrief on what to change before the next cycle starts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-band">
+    <div class="wrap stats-grid">
+      <div class="stat"><span class="num">25+</span><span class="lbl">Years in West Michigan</span></div>
+      <div class="stat"><span class="num">400+</span><span class="lbl">Active clients advised</span></div>
+      <div class="stat"><span class="num">4</span><span class="lbl">CPAs &amp; advisors on staff</span></div>
+      <div class="stat"><span class="num">98%</span><span class="lbl">Client retention rate</span></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testi">
+    <div class="wrap testi-wrap">
+      <blockquote>"They moved us from a shoebox of receipts to a monthly close we actually understand. The tax bill stopped being a surprise."</blockquote>
+      <cite><b>Owner, West Michigan manufacturing business</b> — client since 2019</cite>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="about-figure">
+        <div class="af-row"><span>Founded</span><span>1999</span></div>
+        <div class="af-row"><span>Headquarters</span><span>Ada, Michigan</span></div>
+        <div class="af-row"><span>Specialties</span><span>Tax, Accounting, CFO Advisory</span></div>
+        <div class="af-row"><span>Software</span><span>QuickBooks Certified</span></div>
+        <div class="af-row"><span>Avg. response time</span><span>Under 48 hours</span></div>
+      </div>
+      <div>
+        <span class="tag mono">About the firm</span>
+        <h2 style="font-size:clamp(26px,3vw,36px);line-height:1.18;margin-bottom:20px;">A small firm by design, not by limitation.</h2>
+        <p style="color:#4B5663;font-size:16px;line-height:1.7;margin-bottom:18px;">West Michigan CPA's stays intentionally small so every client works directly with a CPA — not a rotating junior staff. That's meant 25 years of relationships built on knowing your business, not just your tax return.</p>
+        <p style="color:#4B5663;font-size:16px;line-height:1.7;margin-bottom:32px;">We work with owner-operated businesses across Ada, Grandville, and Grand Rapids — from first-year startups to firms preparing for a sale.</p>
+        <a class="btn-secondary" href="#contact">Meet the team →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="wrap cta-grid">
+      <h2>Let's look at your numbers together.</h2>
+      <div class="cta-actions">
+        <a class="btn-primary" href="tel:+16169567979">Call (616) 956-7979</a>
+        <a class="btn-secondary" href="mailto:nate@wmicpa.com">Email the firm</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:16px;">
+          <svg class="brand-mark" viewBox="0 0 100 100" fill="none" style="width:34px;height:34px;">
+            <path d="M8 78 C 20 78, 26 50, 38 50 C 48 50, 50 64, 60 64 C 72 64, 76 30, 92 16" stroke="#8B96A1" stroke-width="9" stroke-linecap="round" fill="none"/>
+            <path d="M8 70 C 20 70, 26 42, 38 42 C 48 42, 50 56, 60 56 C 72 56, 76 22, 92 8" stroke="#0B2C52" stroke-width="9" stroke-linecap="round" fill="none"/>
+            <path d="M76 8 L92 8 L92 24" stroke="#0B2C52" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="brand-text">West Michigan<span>CPA's</span></span>
+        </a>
+        <p style="font-size:14px;color:#5A6573;max-width:260px;line-height:1.6;">975 Spaulding Ave SE, Suite A<br>Ada, Michigan 49301</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Business Accounting</a></li>
+          <li><a href="#">Tax Planning</a></li>
+          <li><a href="#">CFO Services</a></li>
+          <li><a href="#">Audit &amp; Assurance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Firm</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#process">Our process</a></li>
+          <li><a href="#">Client portal</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+16169567979">(616) 956-7979</a></li>
+          <li><a href="mailto:nate@wmicpa.com">nate@wmicpa.com</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 West Michigan CPA's. All rights reserved.</span>
+      <span>Privacy Policy · Disclaimer</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
